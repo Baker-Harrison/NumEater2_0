@@ -7,16 +7,19 @@
 
 #include <iostream>
 #include <type_traits>
-#include <limits>
+#include <unistd.h>
+
 
 using namespace std;
 
 
+const long long int REALLY_LARGE_NUMBER = 2147483647;
 
 template<class T>
 class NumEater {
 private:
     string name;
+
 
 
 public:
@@ -28,6 +31,7 @@ public:
 
     void endorphinSurge() {
         cout << "bliss..." << endl;
+        sleep(1);
     }
 
     static T FeedMe() {
@@ -40,8 +44,8 @@ public:
 
         if (cin.fail()) {
             isFailed = true;
-            std::cin.clear(); // Clear the fail state
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the invalid input
+            std::cin.clear();
+            std::cin.ignore(REALLY_LARGE_NUMBER, '\n'); // Ignore the invalid input
         }
 
 
@@ -78,6 +82,7 @@ public:
 
 
         } else {
+            cout << "ME FULL!" << endl;
             return num;
         }
     }
